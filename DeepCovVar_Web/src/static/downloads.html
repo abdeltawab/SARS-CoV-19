@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloads - DeepCovVar</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='.9em' font-size='52'%3E%F0%9F%92%89%3C/text%3E%3C/svg%3E">
+    <style>
+        .downloads-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .downloads-content h2 {
+            color: #1a2e4a;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .downloads-content h3 {
+            color: #C8102E;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .downloads-content p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        .download-box {
+            background-color: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .download-button {
+            display: inline-block;
+            background-color: #28a745;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        .download-button:hover {
+            background-color: #218838;
+            color: #fff;
+        }
+        .code-block {
+            background-color: #f5f7fa;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="logo-container">
+                <a href="https://www.uri.edu" target="_blank">
+                    <img src="images/uri_logo.png" alt="University of Rhode Island" class="university-logo">
+                </a>
+            </div>
+            <div class="brand-container">
+                <div class="brand-logo">
+                    <h1 class="brand-title">DeepCovVar</h1>
+                </div>
+                <p class="brand-subtitle">Deep Learning-based COVID-19 Variant Classification</p>
+            </div>
+            <div class="logo-container">
+                <a href="https://www.usd.edu" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/University_of_South_Dakota_logo.png" alt="University of South Dakota" class="university-logo">
+                </a>
+            </div>
+        </div>
+        <nav class="navbar">
+            <a href="index.html" class="nav-link">Prediction</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="downloads.html" class="nav-link active">Downloads</a>
+            <a href="help.html" class="nav-link">Help</a>
+            <a href="https://github.com/ckoh04/DeepCovVar" target="_blank" class="nav-link">GitHub</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="downloads-content">
+            <h1>Downloads</h1>
+            
+            <p>DeepCovVar is available as both a web tool and a command-line interface (CLI) tool. Download the CLI version to run predictions on your local machine or integrate into your workflows.</p>
+
+            <div class="download-box">
+                <h3>🔗 GitHub Repository</h3>
+                <p>Access the complete source code, documentation, and latest releases on GitHub.</p>
+                <a href="https://github.com/ckoh04/DeepCovVar" target="_blank" class="download-button">View on GitHub</a>
+            </div>
+
+            <h2>CLI Tool Installation</h2>
+            
+            <h3>Requirements</h3>
+            <ul>
+                <li>Python 3.7 or higher</li>
+                <li>pip package manager</li>
+                <li>Prodigal (for nucleotide sequence conversion)</li>
+            </ul>
+
+            <h3>Installation Steps</h3>
+            
+            <h4>1. Clone the Repository</h4>
+            <div class="code-block">
+git clone https://github.com/ckoh04/DeepCovVar.git
+cd DeepCovVar</div>
+
+            <h4>2. Install Python Dependencies</h4>
+            <div class="code-block">
+pip install -r requirements.txt</div>
+
+            <h4>3. Install Prodigal</h4>
+            
+            <p><strong>Option 1: Using conda</strong></p>
+            <div class="code-block">
+conda install -c bioconda prodigal</div>
+
+            <p><strong>Option 2: From source</strong></p>
+            <div class="code-block">
+git clone https://github.com/hyattpd/Prodigal.git
+cd Prodigal
+make install</div>
+
+            <h4>4. Install DeepCovVar Package</h4>
+            <div class="code-block">
+pip install .</div>
+
+            <h2>Quick Start</h2>
+            
+            <h3>Command Line Usage</h3>
+            
+            <p><strong>Run complete pipeline (all phases):</strong></p>
+            <div class="code-block">
+python -m deepcovvar -f input.fasta -o output_dir --all-phases</div>
+
+            <p><strong>Run specific phase:</strong></p>
+            <div class="code-block">
+python -m deepcovvar -f input.fasta -o output_dir -p 5</div>
+
+            <p><strong>Run with verbose output:</strong></p>
+            <div class="code-block">
+python -m deepcovvar -f input.fasta -o output_dir --all-phases --verbose</div>
+
+            <h3>Python API Usage</h3>
+            
+            <div class="code-block">
+from deepcovvar.covid_classifier import COVIDClassifier
+
+# Initialize classifier
+classifier = COVIDClassifier()
+
+# Run complete pipeline (all phases)
+all_results = classifier.run_all_phases(
+    input_file="sequences.fasta",
+    output_dir="results/",
+    base_filename="my_analysis"
+)</div>
+
+            <h2>Sample Data</h2>
+            
+            <div class="download-box">
+                <h3>📄 Demo FASTA File</h3>
+                <p>Download a sample FASTA file to test DeepCovVar functionality.</p>
+                <a href="demo/demo.fasta" download class="download-button">Download Demo FASTA</a>
+            </div>
+
+            <h2>Documentation</h2>
+            
+            <p>For detailed documentation, including:</p>
+            <ul>
+                <li>Complete API reference</li>
+                <li>Advanced usage examples</li>
+                <li>Model architecture details</li>
+                <li>Troubleshooting guide</li>
+            </ul>
+            
+            <p>Please visit the <a href="https://github.com/ckoh04/DeepCovVar/blob/main/README.md" target="_blank">README on GitHub</a>.</p>
+
+            <h2>System Requirements</h2>
+            
+            <h3>Minimum Requirements</h3>
+            <ul>
+                <li><strong>OS:</strong> Linux, macOS, or Windows</li>
+                <li><strong>RAM:</strong> 8 GB (16 GB recommended for large datasets)</li>
+                <li><strong>Storage:</strong> 2 GB for models and dependencies</li>
+                <li><strong>Python:</strong> 3.7+</li>
+            </ul>
+
+            <h3>Recommended Requirements</h3>
+            <ul>
+                <li><strong>RAM:</strong> 16 GB or more</li>
+                <li><strong>CPU:</strong> Multi-core processor (4+ cores)</li>
+                <li><strong>GPU:</strong> Optional, but recommended for Phase 5 (CUDA-compatible)</li>
+            </ul>
+
+            <h2>License</h2>
+            
+            <p>DeepCovVar is released under the GNU General Public License v3.0. You are free to use, modify, and distribute this software under the terms of the GPL-3.0 license.</p>
+            
+            <div class="download-box">
+                <h3>📜 License</h3>
+                <p>View the complete license text.</p>
+                <a href="https://github.com/ckoh04/DeepCovVar/blob/main/LICENSE" target="_blank" class="download-button">View License</a>
+            </div>
+
+            <h2>Version History</h2>
+            
+            <p>Check the <a href="https://github.com/ckoh04/DeepCovVar/releases" target="_blank">Releases page</a> on GitHub for version history, changelogs, and archived releases.</p>
+
+            <h2>Support</h2>
+            
+            <p>If you encounter any issues during installation or usage:</p>
+            <ul>
+                <li>Check the <a href="help.html">Help page</a> for troubleshooting tips</li>
+                <li>Search existing <a href="https://github.com/ckoh04/DeepCovVar/issues" target="_blank">GitHub Issues</a></li>
+                <li>Submit a new issue on GitHub with detailed information</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 | 
+            <a href="https://www.uri.edu" target="_blank">University of Rhode Island</a> | 
+            <a href="https://www.usd.edu" target="_blank">University of South Dakota</a>
+        </p>
+    </footer>
+</body>
+</html>

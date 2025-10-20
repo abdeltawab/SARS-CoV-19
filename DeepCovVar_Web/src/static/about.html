@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - DeepCovVar</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='.9em' font-size='52'%3E%F0%9F%92%89%3C/text%3E%3C/svg%3E">
+    <style>
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .about-content h2 {
+            color: #1a2e4a;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .about-content h3 {
+            color: #C8102E;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .about-content p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        .about-content ul {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        .about-content li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="logo-container">
+                <a href="https://www.uri.edu" target="_blank">
+                    <img src="images/uri_logo.png" alt="University of Rhode Island" class="university-logo">
+                </a>
+            </div>
+            <div class="brand-container">
+                <div class="brand-logo">
+                    <h1 class="brand-title">DeepCovVar</h1>
+                </div>
+                <p class="brand-subtitle">Deep Learning-based COVID-19 Variant Classification</p>
+            </div>
+            <div class="logo-container">
+                <a href="https://www.usd.edu" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/University_of_South_Dakota_logo.png" alt="University of South Dakota" class="university-logo">
+                </a>
+            </div>
+        </div>
+        <nav class="navbar">
+            <a href="index.html" class="nav-link">Prediction</a>
+            <a href="about.html" class="nav-link active">About</a>
+            <a href="downloads.html" class="nav-link">Downloads</a>
+            <a href="help.html" class="nav-link">Help</a>
+            <a href="https://github.com/ckoh04/DeepCovVar" target="_blank" class="nav-link">GitHub</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="about-content">
+            <h1>What is DeepCovVar?</h1>
+            
+            <p>The COVID-19 pandemic has highlighted the critical importance of rapid and accurate viral variant identification. DeepCovVar is a comprehensive bioinformatics package designed to predict and classify COVID-19 variants using state-of-the-art deep learning models. This tool addresses the urgent need for efficient computational methods to identify and track emerging SARS-CoV-2 variants.</p>
+
+            <h2>Background</h2>
+            
+            <p>As SARS-CoV-2 continues to evolve, new variants emerge with potentially different transmission rates, disease severity, and vaccine efficacy. Traditional methods for variant identification can be time-consuming and resource-intensive. DeepCovVar leverages the power of deep learning to provide fast, accurate, and scalable variant classification directly from sequence data.</p>
+
+            <h2>Key Features</h2>
+            
+            <h3>Five-Phase Classification Pipeline</h3>
+            <p>DeepCovVar employs a sophisticated multi-stage classification approach that progressively narrows down the classification from broad categories to specific variant identification:</p>
+            <ul>
+                <li><strong>Phase 1:</strong> Virus vs Non-virus classification</li>
+                <li><strong>Phase 2:</strong> (+)ssRNA (Class IV) vs Others</li>
+                <li><strong>Phase 3:</strong> Coronavirus vs Other ssRNA(+)</li>
+                <li><strong>Phase 4:</strong> SARS-CoV-2, MERS, and SARS multi-classification</li>
+                <li><strong>Phase 5:</strong> SARS-CoV-2 Variant Classification (Omicron, Alpha, Delta, Epsilon, Iota, Gamma, Others)</li>
+            </ul>
+
+            <h3>Automatic Sequence Processing</h3>
+            <p>DeepCovVar intelligently detects whether input sequences are nucleotide or protein sequences and automatically handles conversion when necessary. The tool integrates Prodigal gene prediction software for high-quality nucleotide-to-protein conversion, ensuring seamless processing regardless of input format.</p>
+
+            <h3>Advanced Deep Learning Architecture</h3>
+            <p>The tool combines multiple deep learning approaches for optimal performance:</p>
+            <ul>
+                <li><strong>Phases 1-4:</strong> Keras-based neural networks with optimized weights for efficient classification</li>
+                <li><strong>Phase 5:</strong> PyTorch Transformer model (ESM-2) for advanced sequence-based variant classification</li>
+                <li><strong>Feature Extraction:</strong> CKSAAP (Composition of k-spaced Amino Acid Pairs) for capturing sequence patterns</li>
+            </ul>
+
+            <h2>Model Architecture</h2>
+            
+            <p>DeepCovVar utilizes a hierarchical deep learning architecture that combines convolutional and transformer-based models. The early phases use optimized Keras models for rapid initial classification, while the final phase employs the powerful ESM-2 transformer model for fine-grained variant discrimination. This hybrid approach balances computational efficiency with classification accuracy.</p>
+
+            <h2>Applications</h2>
+            
+            <p>DeepCovVar has broad applications in:</p>
+            <ul>
+                <li><strong>Epidemiological Surveillance:</strong> Rapid identification of circulating variants in populations</li>
+                <li><strong>Clinical Diagnostics:</strong> Supporting clinical decision-making through variant identification</li>
+                <li><strong>Research:</strong> Facilitating studies on variant evolution, transmission, and pathogenicity</li>
+                <li><strong>Public Health:</strong> Informing public health responses and vaccine development strategies</li>
+            </ul>
+
+            <h2>Citation</h2>
+            
+            <p>If you use DeepCovVar in your research, please cite:</p>
+            <pre style="background-color: #f5f7fa; padding: 15px; border-radius: 4px; overflow-x: auto;">
+@software{deepcovvar2025,
+  title={DeepCovVar: Deep Learning-Based COVID-19 Variant Classification Tool},
+  author={},
+  year={2025},
+  url={https://github.com/ckoh04/DeepCovVar}
+}</pre>
+
+            <h2>Acknowledgments</h2>
+            
+            <p>DeepCovVar is developed through collaboration between the University of Rhode Island and the University of South Dakota. We acknowledge the contributions of researchers, developers, and the broader scientific community in advancing computational approaches for viral variant identification.</p>
+
+            <h2>License</h2>
+            
+            <p>This project is licensed under the GNU General Public License v3.0. See the <a href="https://github.com/ckoh04/DeepCovVar/blob/main/LICENSE" target="_blank">LICENSE</a> file for details.</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 | 
+            <a href="https://www.uri.edu" target="_blank">University of Rhode Island</a> | 
+            <a href="https://www.usd.edu" target="_blank">University of South Dakota</a>
+        </p>
+    </footer>
+</body>
+</html>

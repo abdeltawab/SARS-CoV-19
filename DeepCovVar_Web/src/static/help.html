@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help - DeepCovVar</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='.9em' font-size='52'%3E%F0%9F%92%89%3C/text%3E%3C/svg%3E">
+    <style>
+        .help-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .help-content h2 {
+            color: #1a2e4a;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-top: 20px;
+            border-top: 2px solid #e9ecef;
+        }
+        .help-content h2:first-of-type {
+            margin-top: 20px;
+            padding-top: 0;
+            border-top: none;
+        }
+        .help-content h3 {
+            color: #C8102E;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .help-content p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        .help-content ul, .help-content ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        .help-content li {
+            margin-bottom: 8px;
+        }
+        .help-content code {
+            background-color: #f5f7fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        .help-sidebar {
+            position: sticky;
+            top: 20px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .help-sidebar h3 {
+            margin-top: 0;
+            color: #1a2e4a;
+        }
+        .help-sidebar a {
+            display: block;
+            padding: 8px 0;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="logo-container">
+                <a href="https://www.uri.edu" target="_blank">
+                    <img src="images/uri_logo.png" alt="University of Rhode Island" class="university-logo">
+                </a>
+            </div>
+            <div class="brand-container">
+                <div class="brand-logo">
+                    <h1 class="brand-title">DeepCovVar</h1>
+                </div>
+                <p class="brand-subtitle">Deep Learning-based COVID-19 Variant Classification</p>
+            </div>
+            <div class="logo-container">
+                <a href="https://www.usd.edu" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/University_of_South_Dakota_logo.png" alt="University of South Dakota" class="university-logo">
+                </a>
+            </div>
+        </div>
+        <nav class="navbar">
+            <a href="index.html" class="nav-link">Prediction</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="downloads.html" class="nav-link">Downloads</a>
+            <a href="help.html" class="nav-link active">Help</a>
+            <a href="https://github.com/ckoh04/DeepCovVar" target="_blank" class="nav-link">GitHub</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="help-content">
+            <h1>DeepCovVar Tutorial</h1>
+            
+            <p>Welcome to the DeepCovVar help page. This guide will walk you through using the web interface to classify COVID-19 variants. If you have questions not covered here, please visit our <a href="https://github.com/ckoh04/DeepCovVar" target="_blank">GitHub repository</a> or contact us.</p>
+
+            <h2>Getting Started</h2>
+            
+            <p>DeepCovVar provides a user-friendly web interface for submitting sequence data and receiving variant classification results. The process involves three main steps: providing input data, selecting prediction options, and viewing results.</p>
+
+            <h2>Data Input</h2>
+            
+            <h3>Sequence Type Selection</h3>
+            <p>First, select your query sequence type:</p>
+            <ul>
+                <li><strong>Amino acid (Protein):</strong> Select this if your sequences are protein sequences</li>
+                <li><strong>Nucleotide:</strong> Select this if your sequences are DNA/RNA sequences</li>
+            </ul>
+            <p><strong>Note:</strong> DeepCovVar can automatically detect and convert nucleotide sequences to protein sequences using Prodigal integration.</p>
+
+            <h3>Input Methods</h3>
+            <p>DeepCovVar supports three convenient ways to provide sequence data:</p>
+
+            <h4>1. Accession ID</h4>
+            <p>Enter an accession ID from NCBI or UniProt databases. The system will automatically fetch the sequence for you.</p>
+            <ul>
+                <li>Select <strong>NCBI</strong> for NCBI GenBank/RefSeq accessions (e.g., P0DTC2)</li>
+            </ul>
+
+            <h4>2. File Upload</h4>
+            <p>Upload a FASTA file containing your sequences:</p>
+            <ul>
+                <li>Click "Browse" to select a file from your computer</li>
+                <li>Supported formats: .fasta, .fa, .faa, .fna, .txt</li>
+                <li>Maximum: 1000 sequences per file</li>
+                <li>File size limit: 50 MB</li>
+            </ul>
+
+            <h4>3. Paste Sequences</h4>
+            <p>Directly paste FASTA-formatted sequences into the text area. Click "Load Demo FASTA" to see an example format.</p>
+
+            <h3>FASTA Format</h3>
+            <p>Sequences must be in FASTA format:</p>
+            <pre style="background-color: #f5f7fa; padding: 15px; border-radius: 4px; overflow-x: auto;">
+>Sequence_ID Description
+MFVFLVLLPLVSSQCVNLTTRTQLPPAYTNSFTRGVYYPDKVFRSSVLH
+STQDLFLPFFSNVTWFHAIHVSGTNGTKRFDNPVLPFNDGVYFASTEKS
+...</pre>
+
+            <h2>Prediction Phases</h2>
+            
+            <p>DeepCovVar uses a five-phase hierarchical classification system. You can select which phases to run:</p>
+
+            <h3>Phase I: Virus vs Non-virus</h3>
+            <p>The first phase determines whether the input sequence is from a virus or not. This is the foundational classification step.</p>
+
+            <h3>Phase II: (+)ssRNA (Class IV) vs Others</h3>
+            <p>For sequences classified as viruses, this phase identifies positive-sense single-stranded RNA viruses (Class IV).</p>
+
+            <h3>Phase III: Coronavirus vs Other ssRNA(+)</h3>
+            <p>This phase specifically identifies coronavirus sequences among positive-sense ssRNA viruses.</p>
+
+            <h3>Phase IV: SARS-CoV-2, MERS, and SARS Classification</h3>
+            <p>Phase IV distinguishes between SARS-CoV-2, MERS-CoV, and SARS-CoV among coronavirus sequences.</p>
+
+            <h3>Phase V: SARS-CoV-2 Variant Classification</h3>
+            <p>The final phase classifies SARS-CoV-2 sequences into specific variants:</p>
+            <ul>
+                <li>Omicron</li>
+                <li>Alpha</li>
+                <li>Delta</li>
+                <li>Epsilon</li>
+                <li>Iota</li>
+                <li>Gamma</li>
+                <li>Others</li>
+            </ul>
+
+            <h3>Selecting Phases</h3>
+            <ul>
+                <li>Check individual phases you want to run</li>
+                <li>Click "Select All Phases" to run the complete pipeline (recommended for comprehensive analysis)</li>
+                <li>At least one phase must be selected</li>
+            </ul>
+
+            <h2>Options</h2>
+            
+            <h3>Model Selection</h3>
+            <ul>
+                <li><strong>Optimized Models (Recommended):</strong> Uses space-optimized models for faster processing with minimal accuracy trade-off</li>
+                <li><strong>Standard Models:</strong> Uses full-size models for maximum accuracy</li>
+            </ul>
+
+            <h3>Verbose Output</h3>
+            <p>Enable this option to receive detailed logging information about the prediction process. Useful for debugging or understanding the classification steps.</p>
+
+            <h2>Running Predictions</h2>
+            
+            <h3>Email Notification (Optional)</h3>
+            <p>Enter your email address to receive a notification when your prediction job completes. This is especially useful for large datasets that may take longer to process.</p>
+
+            <h3>Submitting Your Job</h3>
+            <ol>
+                <li>Ensure you've provided input data (accession ID, file, or pasted sequences)</li>
+                <li>Select at least one prediction phase</li>
+                <li>Choose your preferred options</li>
+                <li>Click <strong>"Run Prediction"</strong></li>
+            </ol>
+
+            <p>You'll receive a unique Job ID and be redirected to the results page where you can monitor progress.</p>
+
+            <h2>Understanding Results</h2>
+            
+            <h3>Results Page</h3>
+            <p>The results page displays:</p>
+            <ul>
+                <li><strong>Job Status:</strong> Pending, Running, Completed, or Failed</li>
+                <li><strong>Progress Bar:</strong> Real-time progress indicator</li>
+                <li><strong>Phase Results:</strong> Classification results for each completed phase</li>
+                <li><strong>Visualizations:</strong> Charts showing variant distribution and confidence scores</li>
+            </ul>
+
+            <h3>Downloading Results</h3>
+            <p>Results can be downloaded in multiple formats:</p>
+            <ul>
+                <li><strong>CSV:</strong> Comma-separated values for easy import into spreadsheet software</li>
+                <li><strong>Excel:</strong> Formatted Excel workbook with separate sheets for each phase</li>
+                <li><strong>PDF:</strong> Professional report with summary statistics and results</li>
+            </ul>
+
+            <h2>Troubleshooting</h2>
+            
+            <h3>Common Issues</h3>
+            
+            <h4>Invalid FASTA Format</h4>
+            <p><strong>Problem:</strong> Error message about invalid FASTA format<br>
+            <strong>Solution:</strong> Ensure your sequences follow proper FASTA format with header lines starting with ">" followed by sequence data</p>
+
+            <h4>Too Many Sequences</h4>
+            <p><strong>Problem:</strong> Error about exceeding sequence limit<br>
+            <strong>Solution:</strong> Split your dataset into smaller batches (maximum 1000 sequences per submission)</p>
+
+            <h4>Job Taking Too Long</h4>
+            <p><strong>Problem:</strong> Job appears stuck or taking excessive time<br>
+            <strong>Solution:</strong> Large datasets or running all phases can take time. Check back later or use email notification. Jobs timeout after 1 hour.</p>
+
+            <h4>Accession ID Not Found</h4>
+            <p><strong>Problem:</strong> Error fetching sequence from database<br>
+            <strong>Solution:</strong> Verify the accession ID is correct and select the appropriate database (NCBI or UniProt)</p>
+
+            <h2>Best Practices</h2>
+            
+            <ul>
+                <li><strong>Use "Select All Phases"</strong> for comprehensive variant analysis</li>
+                <li><strong>Provide email address</strong> for large jobs to receive completion notifications</li>
+                <li><strong>Check sequence quality</strong> before submission to ensure accurate results</li>
+                <li><strong>Use demo data</strong> to familiarize yourself with the interface</li>
+                <li><strong>Keep Job IDs</strong> to retrieve results later</li>
+            </ul>
+
+            <h2>Contact & Support</h2>
+            
+            <p>For additional help, bug reports, or feature requests:</p>
+            <ul>
+                <li>Visit our <a href="https://github.com/ckoh04/DeepCovVar" target="_blank">GitHub repository</a></li>
+                <li>Submit an issue on GitHub</li>
+                <li>Check the README for CLI tool documentation</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 | 
+            <a href="https://www.uri.edu" target="_blank">University of Rhode Island</a> | 
+            <a href="https://www.usd.edu" target="_blank">University of South Dakota</a>
+        </p>
+    </footer>
+</body>
+</html>

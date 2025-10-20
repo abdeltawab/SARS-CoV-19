@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepCovVar - COVID-19 Variant Classification Tool</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='.9em' font-size='52'%3E%F0%9F%92%89%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="logo-container">
+                <a href="https://www.uri.edu" target="_blank">
+                    <img src="images/uri_logo.png" alt="University of Rhode Island" class="university-logo">
+                </a>
+            </div>
+            <div class="brand-container">
+                <div class="brand-logo">
+                    <h1 class="brand-title">DeepCovVar</h1>
+                </div>
+                <p class="brand-subtitle">Deep Learning-based COVID-19 Variant Classification</p>
+            </div>
+            <div class="logo-container">
+                <a href="https://www.usd.edu" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/University_of_South_Dakota_logo.png" alt="University of South Dakota" class="university-logo">
+                </a>
+            </div>
+        </div>
+        <nav class="navbar">
+            <a href="index.html" class="nav-link active">Prediction</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="downloads.html" class="nav-link">Downloads</a>
+            <a href="help.html" class="nav-link">Help</a>
+            <a href="https://github.com/ckoh04/DeepCovVar" target="_blank" class="nav-link">GitHub</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="citation-notice">
+            <strong>DeepCovVar:</strong> A comprehensive bioinformatics package for predicting and classifying COVID-19 variants using state-of-the-art deep learning models.
+            <br>
+            <a href="https://github.com/ckoh04/DeepCovVar" target="_blank">https://github.com/ckoh04/DeepCovVar</a>
+        </div>
+
+        <div class="content-grid">
+            <!-- Left Column -->
+            <div class="left-column">
+                <!-- Section I: Data Input -->
+                <section class="section">
+                    <h2 class="section-title">I. Data Input</h2>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Select query sequence type:</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="sequence_type" value="protein" checked>
+                                <span>Amino acid (Protein)</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="sequence_type" value="nucleotide">
+                                <span>Nucleotide</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Enter Accession ID:</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="database" value="ncbi" checked>
+                                <span>NCBI</span>
+                            </label>
+                        </div>
+                        <input type="text" id="accession_id" class="text-input" placeholder="P0DTC2">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Or Upload a FASTA file:</label>
+                        <div class="file-upload-container">
+                            <input type="file" id="file_upload" class="file-input" accept=".fasta,.fa,.faa,.fna,.txt">
+                            <label for="file_upload" class="file-upload-label">
+                                <span id="file_name">Choose file</span>
+                                <button type="button" class="browse-button">Browse</button>
+                            </label>
+                        </div>
+                        <small class="help-text">Maximum 1000 sequences</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Or Paste FASTA sequences:</label>
+                        <textarea id="sequence_text" class="textarea-input" placeholder="Paste your FASTA sequences here..." rows="8"></textarea>
+                        <button type="button" id="load_demo" class="demo-button">Load Demo FASTA</button>
+                    </div>
+                </section>
+
+                <!-- Section II: Prediction Level -->
+                <section class="section">
+                    <h2 class="section-title">II. Prediction Level</h2>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Select Prediction Phase(s):</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="phases" value="1">
+                                <span><strong>Phase I</strong> - Virus vs Non-virus classification</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="phases" value="2">
+                                <span><strong>Phase II</strong> - (+)ssRNA (Class IV) vs Others</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="phases" value="3">
+                                <span><strong>Phase III</strong> - Coronavirus vs Other ssRNA(+)</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="phases" value="4">
+                                <span><strong>Phase IV</strong> - SARS-CoV-2, MERS, and SARS multi-classification</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="phases" value="5">
+                                <span><strong>Phase V</strong> - SARS-CoV-2 Variant Classification</span>
+                            </label>
+                        </div>
+                        <button type="button" id="select_all_phases" class="secondary-button">Select All Phases</button>
+                    </div>
+                </section>
+
+                <!-- Section III: Threshold Settings -->
+                <section class="section">
+                    <h2 class="section-title">III. Threshold Settings</h2>
+                    <div class="help-text">
+                        <p><strong>Binary Classification Thresholds:</strong> Adjust the confidence thresholds for binary classification phases (Phase I, II, III).</p>
+                        <p>Default: 50% for both classes. Lower values make classification more sensitive.</p>
+                    </div>
+                    
+                    <div class="threshold-controls" id="threshold_controls" style="display: none;">
+                        <div class="form-group">
+                            <label class="form-label">Phase I (Virus vs Non-virus):</label>
+                            <div class="threshold-inputs">
+                                <div class="threshold-input">
+                                    <label>Virus threshold (%):</label>
+                                    <input type="number" id="phase1_threshold1" class="threshold-input-field" min="0" max="100" value="50">
+                                </div>
+                                <div class="threshold-input">
+                                    <label>Non-virus threshold (%):</label>
+                                    <input type="number" id="phase1_threshold2" class="threshold-input-field" min="0" max="100" value="50">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Phase II ((+)ssRNA vs Others):</label>
+                            <div class="threshold-inputs">
+                                <div class="threshold-input">
+                                    <label>(+)ssRNA threshold (%):</label>
+                                    <input type="number" id="phase2_threshold1" class="threshold-input-field" min="0" max="100" value="50">
+                                </div>
+                                <div class="threshold-input">
+                                    <label>Others threshold (%):</label>
+                                    <input type="number" id="phase2_threshold2" class="threshold-input-field" min="0" max="100" value="50">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Phase III (Coronavirus vs Other ssRNA(+)):</label>
+                            <div class="threshold-inputs">
+                                <div class="threshold-input">
+                                    <label>Coronavirus threshold (%):</label>
+                                    <input type="number" id="phase3_threshold1" class="threshold-input-field" min="0" max="100" value="50">
+                                </div>
+                                <div class="threshold-input">
+                                    <label>Other ssRNA(+) threshold (%):</label>
+                                    <input type="number" id="phase3_threshold2" class="threshold-input-field" min="0" max="100" value="50">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" id="reset_thresholds" class="secondary-button">Reset to Defaults</button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column -->
+            <div class="right-column">
+                <!-- Section II: Run Prediction -->
+                <section class="section">
+                    <h2 class="section-title">II. Run Prediction</h2>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email address (Optional):</label>
+                        <input type="email" id="email" class="text-input" placeholder="your.email@example.com">
+                        <small class="help-text">Receive notification when prediction completes</small>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" id="reset_button" class="reset-button">Reset</button>
+                        <button type="button" id="run_prediction" class="run-button">Run Prediction</button>
+                    </div>
+
+                    <div id="status_message" class="status-message" style="display: none;"></div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 | 
+            <a href="https://www.uri.edu" target="_blank">University of Rhode Island</a> | 
+            <a href="https://www.usd.edu" target="_blank">University of South Dakota</a>
+        </p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
